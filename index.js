@@ -8,7 +8,20 @@ var cors = require("cors");
 
 const port = process.env.PORT || 8080;
 const app = express();
-app.use(cors());
+const corsOpts = {
+    origin: '*',
+  
+    methods: [
+      'GET',
+      'POST',
+    ],
+  
+    allowedHeaders: [
+      'Content-Type',
+    ],
+  };
+  
+  app.use(cors(corsOpts));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
