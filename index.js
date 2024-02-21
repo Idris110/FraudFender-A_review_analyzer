@@ -101,7 +101,7 @@ async function fetchData(url) {
     }).toArray();
     // .first().text().replace(/\t/g, '').replace(/\n/g, '').slice(0, -20);
     
-    trusted.showMore = $('#good-reviews').find("a").map(function () {
+    trusted.showMore = $('#good-reviews').find(".show-actual-review").find("a").map(function () {
         return $(this).attr('href');
     }).toArray();
 
@@ -125,7 +125,7 @@ async function fetchData(url) {
     ltrusted.review = $('#bad-reviews').find(".show-actual-review").map(function () {
         return $(this).text().replace(/\t/g, '').replace(/\n/g, '').slice(0, -20);
     }).toArray();
-    ltrusted.showMore = $('#bad-reviews').find("a").map(function () {
+    ltrusted.showMore = $('#bad-reviews').find(".show-actual-review").find("a").map(function () {
         return $(this).attr('href');
     }).toArray();
     
