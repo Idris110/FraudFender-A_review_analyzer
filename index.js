@@ -264,7 +264,7 @@ app.get('/testing', function (req, res, next) {
 });
 
 app.post('/api', function (req, res, next) {
-    console.log("body", req.body);
+    // console.log("body", req.body);
     if (req.body.query === undefined || req.body === "") {
         res.send({});
     } else {
