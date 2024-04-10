@@ -86,7 +86,8 @@ async function fetchData(url) {
 
         let data = {};
 
-        data.prodName = $('#product_name').find('span').text().replace(/\t/g, '').replace(/\n/g, '');
+        let prodName = $('#product_name').find('span').text().replace(/\t/g, '').replace(/\n/g, '');
+        data.prodName = prodName;
         data.totRev = $('fieldset').find('b').map(function () {
             return $(this).text().trim();
         }).toArray()[0];
@@ -222,7 +223,7 @@ async function fetchData(url) {
         data.deleted = del;
 
 
-        const newsUrl = `https://newsapi.org/v2/everything?q=${prodName.split(' ').slice(0,3).join('%20')}&sortBy=relevancy&language=en&apiKey=4960f3e852cb41c2a30fa08ee94fe9bb`;
+        const newsUrl = `https://newsapi.org/v2/everything?q=${prodName.split(' ').slice(0,3).join(' ')}&sortBy=relevancy&language=en&apiKey=4960f3e852cb41c2a30fa08ee94fe9bb`;
         let news = await axios.request({
             method: "GET",
             url: newsUrl,
@@ -230,7 +231,8 @@ async function fetchData(url) {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
             }
         }).catch((err) => console.log(err));
-        data.news = news;
+        console.log(newsUrl);
+        data.news = news.data;
 
 
         return data;
@@ -283,5 +285,5 @@ app.post('/api', function (req, res, next) {
 });
 
 app.listen(port);
-// console.log('Server started at http://localhost:' + port);
+console.log('Server started at http://localhost:' + port);
 
